@@ -20,7 +20,8 @@ def test_check_manifest(tmp_path: pathlib.Path) -> None:
     with pytest.raises(RuntimeError):
         _check_manifest("OTHER-VERSION", manifest_file)
     # Check by calling `from_github_tag`.
-    assert from_github_tag(manifest_file=manifest_file, version_file="MY-VERSION") == "dev"
+    with mock.patch.dict(os.environ, clear=True):
+        assert from_github_tag(manifest_file=manifest_file, version_file="MY-VERSION") == "dev"
 
 
 def test_get_version_from_env(tmp_path: pathlib.Path) -> None:
