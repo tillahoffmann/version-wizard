@@ -1,10 +1,12 @@
 🧙 version-wizard
 =================
 
-.. image:: https://github.com/tillahoffmann/wizard-version/actions/workflows/main.yml/badge.svg
-    :target: https://github.com/tillahoffmann/wizard-version/actions/workflows/main.yml
+.. image:: https://github.com/tillahoffmann/version-wizard/actions/workflows/main.yml/badge.svg
+    :target: https://github.com/tillahoffmann/version-wizard/
 .. image:: https://badge.fury.io/py/version-wizard.svg
     :target: https://pypi.org/project/version-wizard/
+.. image:: https://readthedocs.org/projects/version-wizard/badge/?version=latest
+    :target: https://version-wizard.readthedocs.io/en/latest/?badge=latest
 
 The version wizard extracts version information from a git tag and includes it in your python package so you don't have to worry about commit messages like :code:`Bump version to 0.8.1` anymore. Here's how to use the wizard:
 

@@ -24,6 +24,6 @@ setup(
     },
     long_description=long_description,
     long_description_content_type="text/x-rst",
-    url="https://github.com/tillahoffmann/wizard-version/",
+    url="https://github.com/tillahoffmann/version-wizard/",
     author="Till Hoffmann",
 )
