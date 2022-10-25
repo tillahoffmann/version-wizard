@@ -31,7 +31,7 @@ def from_github_tag(default: str = "dev", version_file: str = "VERSION",
         manifest_file: File encoding the package manifest.
 
     Returns:
-        version: Package version.
+        The package version.
     """
     if check_manifest:
         _check_manifest(version_file, manifest_file)
@@ -47,7 +47,7 @@ def from_github_tag(default: str = "dev", version_file: str = "VERSION",
     try:
         ref = os.environ["GITHUB_REF"]
     except KeyError:
-        LOGGER.warning("GitHub environment variable `GITHUB_REF` is not set; defaulting to %s",
+        LOGGER.warning("GitHub environment variable `GITHUB_REF` is not set; defaulting to `%s`",
                        default)
         return default
 
