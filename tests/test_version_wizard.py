@@ -23,7 +23,8 @@ def test_check_manifest(tmp_path: pathlib.Path) -> None:
         _check_manifest("OTHER-VERSION", manifest_file)
     # Check by calling `from_github_tag`.
     with mock.patch.dict(os.environ, clear=True):
-        assert from_github_tag(manifest_file=manifest_file, version_file="MY-VERSION") == "dev"
+        assert from_github_tag(manifest_file=manifest_file, version_file="MY-VERSION") \
+            == "0.0.0+dev"
 
 
 def test_get_version_from_env(tmp_path: pathlib.Path) -> None:
@@ -38,7 +39,8 @@ def test_get_version_from_env_not_a_tag(tmp_path: pathlib.Path, caplog: pytest.L
         -> None:
     with mock.patch.dict(os.environ, {"GITHUB_REF": "refs/heads/..."}), \
             caplog.at_level(logging.INFO):
-        assert from_github_tag(check_manifest=False, version_file=tmp_path / "VERSION") == "dev"
+        assert from_github_tag(check_manifest=False, version_file=tmp_path / "VERSION") \
+            == "0.0.0+dev"
         assert "is not a tag" in caplog.text
 
     with mock.patch.dict(os.environ, {"GITHUB_REF": "refs/bug/..."}), pytest.raises(ValueError):

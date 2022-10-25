@@ -16,7 +16,7 @@ def _check_manifest(version_file: str, manifest_file: str = "MANIFEST.in") -> No
                                f"please add `include {version_file}`")
 
 
-def from_github_tag(default: str = "dev", version_file: str = "VERSION",
+def from_github_tag(default: str = "0.0.0+dev", version_file: str = "VERSION",
                     version_pattern: str = r"\d+\.\d+\.\d+", check_manifest: bool = True,
                     manifest_file: str = "MANIFEST.in") -> str:
     """
