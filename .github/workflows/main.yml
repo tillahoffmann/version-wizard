@@ -26,6 +26,8 @@ jobs:
         run: pytest --cov=version_wizard --cov-report=term-missing --cov-fail-under=100
       - name: Lint the code
         run: flake8
+      - name: Build the documentation
+        run: sphinx-build . docs/_build
       - name: Build the package
         run: python setup.py sdist
       - name: Publish package

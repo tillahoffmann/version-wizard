@@ -2,6 +2,8 @@ import logging
 import os
 import pathlib
 import pytest
+from readme_renderer.rst import render
+import sys
 from unittest import mock
 from version_wizard import _check_manifest, from_github_tag
 
@@ -41,3 +43,14 @@ def test_get_version_from_env_not_a_tag(tmp_path: pathlib.Path, caplog: pytest.L
 
     with mock.patch.dict(os.environ, {"GITHUB_REF": "refs/bug/..."}), pytest.raises(ValueError):
         from_github_tag(check_manifest=False, version_file=tmp_path / "VERSION")
+
+
+def test_render_pypi_readme() -> None:
+    with mock.patch("setuptools.setup") as setup:
+        import setup as _setup  # noqa: F401
+    setup.assert_called_once()
+    _, kwargs = setup.call_args
+    rendered = render(kwargs["long_description"], stream=sys.stderr)
+    output = pathlib.Path("docs/_build/pypi-README.html")
+    output.parent.mkdir(exist_ok=True, parents=True)
+    output.write_text(rendered)
