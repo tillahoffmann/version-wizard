@@ -25,7 +25,7 @@ jobs:
       - name: Run the tests
         run: pytest --cov=version_wizard --cov-report=term-missing --cov-fail-under=100
       - name: Lint the code
-        run: doit lint
+        run: flake8
       - name: Publish package
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
         uses: pypa/gh-action-pypi-publish@release/v1
